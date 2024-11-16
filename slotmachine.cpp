@@ -107,6 +107,7 @@ void Slots(double& coins){
     4. If two same, return coins - bet
     5. If no same, return coins - 2*bet
     */ 
+
     while (true){ 
         string temp;
         double bet;
