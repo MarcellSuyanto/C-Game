@@ -6,17 +6,20 @@
 #include <stdlib.h>  /* srand, rand */
 #include <time.h>
 #include <sstream>
+#include <random>
 
 
 using namespace std;
 
 vector<Card> createDeck() {
     vector<Card> deck;
-    
-    srand (time(NULL));
+
+    // Initialize random number generator
+    random_device rd;  // Obtain a random number from hardware
+    mt19937 eng(rd()); // Seed the generator
 
     char ranks[] = {'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
-    char suits[] = {'H','D','S','C'};
+    char suits[] = {'H', 'D', 'S', 'C'};
 
     for (char rank : ranks) {
         for (char suit : suits) {
@@ -24,7 +27,8 @@ vector<Card> createDeck() {
         }
     }
 
-    random_shuffle(deck.begin(), deck.end());
+    // Shuffle the deck using std::shuffle and the random engine
+    shuffle(deck.begin(), deck.end(), eng);
 
     return deck;
 }
