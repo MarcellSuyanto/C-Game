@@ -7,6 +7,7 @@
 #include "HighOrLow.h"
 #include "slotmachine.h"
 #include "Baccarat.h"
+#include "profile.h"
 
 using namespace std;
 
@@ -27,7 +28,7 @@ vector<string> gameMap = {
     "#----------| |--------------------| |----       #",
     " E                                      |       #",
     " X                                      |       #",
-    " I       @                              |       #",
+    " I   @                                  |       #",
     " T                                      |       #",
     "#----------| |--------------------| |----       #",
     "#          |3|                    |4|           #",
@@ -42,8 +43,7 @@ vector<string> gameMap = {
 
 // Function to display the map
 void displayMap(double &coins) {
-
-    cout << endl << "Current coins: :" << coins << endl;
+    cout << endl << "Current coins: " << coins << endl; // Fixed formatting
     for (const auto& row : gameMap) {
         cout << row << endl;
     }
@@ -70,12 +70,12 @@ void movePlayer(char direction, double &coins, bool &exit) {
     int newY = playerY;
 
     switch (direction) {
-        case 'w': newX--; break;
-        case 's': newX++; break;
-        case 'a': newY--; break;
-        case 'd': newY++; break;
+        case 'W': newX--; break;
+        case 'S': newX++; break;
+        case 'A': newY--; break;
+        case 'D': newY++; break;
         default:
-            cout << "Invalid move. Use w/a/s/d." << endl;
+            cout << "Invalid move. Use W/A/S/D." << endl;
             return;
     }
 
@@ -87,18 +87,19 @@ void movePlayer(char direction, double &coins, bool &exit) {
         else if (gameMap[newX][newY] == '2') {
             cout << "Welcome to Higher or Lower!" << endl;
             HighOrLow(coins); // Call HighOrLow game
-        }else if (gameMap[newX][newY] == '3') {
+        }
+        else if (gameMap[newX][newY] == '3') {
             Slots(coins); // Call Slot Machine
         } 
         else if (gameMap[newX][newY] == '4') {
             Baccarat(coins); // Call Baccarat
         }
-
         else if (gameMap[newX][newY] == 'E' || gameMap[newX][newY] == 'X' || gameMap[newX][newY] == 'I' || gameMap[newX][newY] == 'T') {
-            exit = true;
+            cout << "\n";
+            cout << "Thank you for visiting the casino1 Come back again soon!" << endl;
+            exit = true; // Terminate the game
             return;
-        }
-        else if (gameMap[newX][newY] == ' ') {
+        } else if (gameMap[newX][newY] == ' ') {
             gameMap[playerX][playerY] = ' '; // Clear the old position
             gameMap[newX][newY] = playerSymbol; // Set the new position
         } else if (gameMap[newX][newY] == '#') {
@@ -109,12 +110,12 @@ void movePlayer(char direction, double &coins, bool &exit) {
     }
 }
 
-void displayMainMenu() {
+void displayMainMenu() { // need to format menu nicer
     cout << "\n------ Main Menu ------\n";
     cout << "1. Start Game\n";
-    cout << "2. Exit Game\n";
-    cout << "3. Profile\n";
-    cout << "4. Manage Profiles\n";
+    cout << "2. Profiles\n"; // Load existing profile
+    cout << "3. Exit Game\n";
+    cout << "\n";
     cout << "Select an option: ";
 }
 
@@ -122,46 +123,44 @@ void startGame(const string& username, double &coins) {
     displayMap(coins);
     bool exit = false;
 
-    while (exit == false) {
+    while (!exit) {
         cout << "Move (w/a/s/d): ";
         char choice;
         cin >> choice;
 
-
-        movePlayer(choice, coins, exit);
-        displayMap(coins);
+        movePlayer(choice, coins, exit); // Move the player based on input
+        displayMap(coins); // Update the display of the map
     }
 }
 
 int main() {
-    cout << "Enter your username: ";
-    string username;
-    getline(cin, username);
-
     double coins = 100.0; // Initial amount of coins
 
     while (true) {
-        displayMainMenu();
-        int option;
-        cin >> option;
+        displayMainMenu(); // Display the main menu
+        int menu_option;
+        cin >> menu_option; // Get user input
 
-        switch (option) {
-            case 1:
-                startGame(username, coins); // Start the game
+        switch (menu_option) {
+            case 1: {
+                cout << endl << "Enter your username: ";
+                string username;
+                cin >> username;
+                startGame(username, coins); // Start the game with the given username
                 break;
+            }
             case 2:
-                cout << "Game Exited. Good Bye!!!\n";
-                return 0; // Exit the program
+                cout << endl << "Going to profiles..." << endl;
+                profile(); // Load an existing profile
+                break;
             case 3:
-                cout << "Displaying Profiles...\n"; // Implement stats display if needed
-                break;
-            case 4:
-                cout << "Managing profiles...\n"; // Implement profile management if needed
-                break;
+                cout << endl << "Game Exited. Good Bye!!!\n";
+                return 0; // Exit the program
             default:
-                cout << "Invalid option, please try again.\n";
+                cout << "Invalid option. Please try again." << endl;
+                break;
         }
     }
 
-    return 0;
+    return 0; // Return statement for main
 }
