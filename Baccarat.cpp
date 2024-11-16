@@ -67,7 +67,7 @@ void PrintCards(vector<Card> bankerDeck, vector<Card> playerDeck){
     //Printing Player's Deck
 }
 
-int getSum(vector<Card> deck){
+int getSumBaccarat(vector<Card> deck){
     int length = deck.size();
     int total = 0;
     for (int i=0; i<length; i++){
@@ -120,7 +120,7 @@ void Baccarat(double& coins){
         while (placeBet != 'P' && placeBet != 'B' && placeBet != 'T'){
             cout << "Invalid input, try again: ";
             cin >> placeBet;
-        }   
+        }
         cout << "" << endl;
         cout << "How much would you like to bet: ";
         cin >> temp;
@@ -134,21 +134,21 @@ void Baccarat(double& coins){
 
         PrintCards(bankerDeck, playerDeck);
 
-        int bankerTotal = getSum(bankerDeck);
-        int playerTotal = getSum(playerDeck);
+        int bankerTotal = getSumBaccarat(bankerDeck);
+        int playerTotal = getSumBaccarat(playerDeck);
         bool playerDraw = false;
         char win = '_';
         if ((playerTotal != 8 && playerTotal != 9) && (bankerTotal != 8 && bankerTotal != 9)){
             if (playerTotal <= 5){
                 playerDeck.push_back(newDeck[5]);
-                playerTotal = getSum(playerDeck);
+                playerTotal = getSumBaccarat(playerDeck);
                 playerDraw = true;
             } 
 
             if (playerDraw == false){
                 if (bankerTotal <= 5){
                     bankerDeck.push_back(newDeck[5]);
-                    bankerTotal = getSum(bankerDeck);
+                    bankerTotal = getSumBaccarat(bankerDeck);
                     cout << "1" << endl;
                 }
             } else{
@@ -168,7 +168,7 @@ void Baccarat(double& coins){
                     bankerDeck.push_back(newDeck[6]);
                     cout << "6" << endl;
                 }
-                bankerTotal = getSum(bankerDeck);
+                bankerTotal = getSumBaccarat(bankerDeck);
             }
         
         } else if ((playerTotal == 8 || playerTotal == 9) && (bankerTotal != 8 && bankerTotal != 9)){
@@ -193,8 +193,8 @@ void Baccarat(double& coins){
 
         PrintCards(bankerDeck, playerDeck);
 
-        cout << "Player Total: " << getSum(playerDeck) << endl;
-        cout << "Banker Total: " << getSum(bankerDeck) << endl;
+        cout << "Player Total: " << getSumBaccarat(playerDeck) << endl;
+        cout << "Banker Total: " << getSumBaccarat(bankerDeck) << endl;
         cout << " " << endl;
 
         if (win == 'T'){
