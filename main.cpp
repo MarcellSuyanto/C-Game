@@ -41,7 +41,9 @@ vector<string> gameMap = {
 };
 
 // Function to display the map
-void displayMap() {
+void displayMap(double &coins) {
+
+    cout << endl << "Current coins: :" << coins << endl;
     for (const auto& row : gameMap) {
         cout << row << endl;
     }
@@ -49,7 +51,7 @@ void displayMap() {
 }
 
 // Function to move player
-void movePlayer(char direction, double &coins) {
+void movePlayer(char direction, double &coins, bool &exit) {
     int playerX = -1;
     int playerY = -1;
 
@@ -79,9 +81,11 @@ void movePlayer(char direction, double &coins) {
 
     if (newX >= 0 && newX < MAP_HEIGHT && newY >= 0 && newY < MAP_WIDTH) {
         if (gameMap[newX][newY] == '1') {
+            cout << "Welcome to Blackjack!" << endl;
             Blackjack(coins); // Call Blackjack game
         } 
         else if (gameMap[newX][newY] == '2') {
+            cout << "Welcome to Higher or Lower!" << endl;
             HighOrLow(coins); // Call HighOrLow game
         }else if (gameMap[newX][newY] == '3') {
             Slots(coins); // Call Slot Machine
@@ -90,6 +94,10 @@ void movePlayer(char direction, double &coins) {
             Baccarat(coins); // Call Baccarat
         }
 
+        else if (gameMap[newX][newY] == 'E' || gameMap[newX][newY] == 'X' || gameMap[newX][newY] == 'I' || gameMap[newX][newY] == 'T') {
+            exit = true;
+            return;
+        }
         else if (gameMap[newX][newY] == ' ') {
             gameMap[playerX][playerY] = ' '; // Clear the old position
             gameMap[newX][newY] = playerSymbol; // Set the new position
@@ -111,17 +119,17 @@ void displayMainMenu() {
 }
 
 void startGame(const string& username, double &coins) {
-    displayMap();
+    displayMap(coins);
+    bool exit = false;
 
-    while (true) {
-        cout << "Move (w/a/s/d) or press 'q' to quit: ";
+    while (exit == false) {
+        cout << "Move (w/a/s/d): ";
         char choice;
         cin >> choice;
 
-        if (choice == 'q') break;
 
-        movePlayer(choice, coins);
-        displayMap();
+        movePlayer(choice, coins, exit);
+        displayMap(coins);
     }
 }
 
