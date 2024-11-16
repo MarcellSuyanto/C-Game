@@ -78,7 +78,7 @@ void PrintCards(vector<Card> dealerDeck, vector<Card> playerDeck, bool hit){
     cout << endl; 
 }
 
-int getSum(vector<Card> deck){
+int getSumBlackjack(vector<Card> deck){
     int length = deck.size();
     int total = 0;
     int Ace_count = 0;
@@ -106,7 +106,7 @@ int getSum(vector<Card> deck){
 }
 
 string CheckBust(vector<Card> deck){
-    int total = getSum(deck);
+    int total = getSumBlackjack(deck);
     if (total > 21){
         return "BUST";
     }
@@ -209,7 +209,7 @@ void Blackjack(double &coins){
             }
         }
         int dealer_count = 0;
-        while (getSum(dealerDeck) <= 16 && end == false){
+        while (getSumBlackjack(dealerDeck) <= 16 && end == false){
             dealer_count ++;
             dealerDeck.push_back(newDeck[4+hit_count+dealer_count]);
             cout << endl;
@@ -224,7 +224,7 @@ void Blackjack(double &coins){
                 break;
             }
             
-            if (getSum(dealerDeck) >= getSum(playerDeck)){
+            if (getSumBlackjack(dealerDeck) >= getSumBlackjack(playerDeck)){
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
                 coins -= bet;
@@ -242,7 +242,7 @@ void Blackjack(double &coins){
             }
         }
         if (end == false){
-            if (getSum(dealerDeck) >= getSum(playerDeck)){
+            if (getSumBlackjack(dealerDeck) >= getSumBlackjack(playerDeck)){
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
                 coins -= bet;
