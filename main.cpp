@@ -74,6 +74,10 @@ void movePlayer(char direction, double &coins, bool &exit) {
         case 'S': newX++; break;
         case 'A': newY--; break;
         case 'D': newY++; break;
+        case 'w': newX--; break;
+        case 's': newX++; break;
+        case 'a': newY--; break;
+        case 'd': newY++; break;
         default:
             cout << "Invalid move. Use W/A/S/D." << endl;
             return;
