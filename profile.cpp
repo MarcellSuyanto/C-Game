@@ -7,41 +7,45 @@
 
 using namespace std;
 
+struct Player {
+    string name;
+    double coins;
+    // Other player stats
+};
+
+Player* playerProfile = new Player();
+playerProfile->name = "Player1";
+playerProfile->coins = 20; // Initial coins or `initialCoins`
+
 // Game Class
 class Game {
 public:
     string username;
-    int level;
     int coins;
     int coinsNeeded;
 
     Game()
-        : username(""), level(1), coins(20), coinsNeeded(50) {
+        : username(""), coins(20), coinsNeeded(50) {
     }
 
     Game(const string& name)
-        : username(name), level(1), coins(20), coinsNeeded(50) {
+        : username(name), coins(20), coinsNeeded(50) {
     }
 
     bool loadProfile(const string& filename) {
         ifstream file(filename);
         if (!file.is_open()) {
-            return false;  // If file doesn't exist, return false
+            return false; // If file doesn't exist, return false
         }
 
         string line;
         while (getline(file, line)) {
             if (line.find("Username: ") == 0) {
-                username = line.substr(10);  // Extract the username
-            }
-            else if (line.find("Level: ") == 0) {
-                level = stoi(line.substr(7));  // Extract the level
-            }
-            else if (line.find("Coins: ") == 0) {
-                coins = stoi(line.substr(7));  // Extract the coins
-            }
-            else if (line.find("CoinsNeeded: ") == 0) {
-                coinsNeeded = stoi(line.substr(13));  // Extract the coins needed for level up
+                username = line.substr(10); // Extract the username
+            } else if (line.find("Coins: ") == 0) {
+                coins = stoi(line.substr(7)); // Extract the coins
+            } else if (line.find("CoinsNeeded: ") == 0) {
+                coinsNeeded = stoi(line.substr(13)); // Extract the coins needed
             }
         }
         file.close();
@@ -52,7 +56,6 @@ public:
         ofstream file(filename);
         if (file.is_open()) {
             file << "Username: " << username << "\n";
-            file << "Level: " << level << "\n";
             file << "Coins: " << coins << "\n";
             file << "CoinsNeeded: " << coinsNeeded << "\n";
             file.close();
@@ -62,9 +65,8 @@ public:
     // Simulate entering the game
     void enterGame() {
         cout << "\n--- Game Started for " << username << " ---\n";
-        cout << "Level: " << level << "\n";
         cout << "Coins: " << coins << "\n";
-        cout << "Coins Needed for Next Level: " << coinsNeeded << "\n";
+        cout << "Coins Needed for Next Goal: " << coinsNeeded << "\n";
         // Here you can add the actual game loop or gameplay code
     }
 };
@@ -140,8 +142,7 @@ bool loadGameProfile(Game& game) {
         cout << "Profile loaded successfully! Entering the game...\n";
         game.enterGame();
         return true;
-    }
-    else {
+    } else {
         cout << "Failed to load the profile. Returning to the main menu.\n";
         return false;
     }
