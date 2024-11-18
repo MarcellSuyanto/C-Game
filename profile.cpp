@@ -66,8 +66,7 @@ public:
     void enterGame() {
         cout << "\n--- Game Started for " << username << " ---\n";
         cout << "Coins: " << coins << "\n";
-        cout << "Coins Needed for Next Goal: " << coinsNeeded << "\n";
-        // Here you can add the actual game loop or gameplay code
+        cout << "Coins Needed: " << coinsNeeded << "\n";
     }
 };
 
