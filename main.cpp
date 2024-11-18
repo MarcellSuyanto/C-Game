@@ -113,13 +113,7 @@ void movePlayer(char direction, double& coins, bool& exit) {
     }
 }
 
-void displayMainMenu() {
-    cout << "\n------ Main Menu ------\n";
-    cout << "1. Start Game\n";
-    cout << "2. Exit Game\n";
-    cout << "3. Profile\n"; // %#*
-    cout << "Select an option: ";
-}
+
 
 void startGame(const string& username, double& coins) {
 
