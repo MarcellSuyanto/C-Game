@@ -1,7 +1,5 @@
-#include <iostream>
+#include "profile.h"
 #include <fstream>
-#include <string>
-#include <vector>
 #include <sstream>
 
 using namespace std;
@@ -38,14 +36,3 @@ void saveUsername(const string& username, int coins) {
         file.close();
     }
 }
-
-// Function to display the main menu
-void displayMainMenu() {
-    cout << "\n------ Main Menu ------\n";
-    cout << "1. Create New User\n";
-    cout << "2. Load Profile\n";
-    cout << "3. Exit\n";
-    cout << "Select an option: ";
-}
-
-
