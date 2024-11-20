@@ -117,26 +117,37 @@ void movePlayer(char direction, double& coins, bool& exit) {
     }
 }
 
-
-
 void startGame(const string& username, double& coins) {
+    displayMap(coins); // Display the initial map
+    bool exit = false; // Toggle mechanism, to force kick out only if coins < 0
 
-    displayMap(coins);
-    bool exit = false;
-
-    while (exit == false) {
+    while (!exit) {
         cout << "Move (W/A/S/D): ";
         char choice;
-        cin >> choice;
-        // ask player if exit. If exit, save coins and profile here
+        cin >> choice; // Get the player's move choice
 
+        // Move the player based on the choice
         movePlayer(choice, coins, exit);
+        // and check if the player's coins are below zero
+        if (coins < 0) {
+            cout << "You have run out of coins! Exiting the game.\n";
+            exit = true; // Set exit to true to break the loop
+            continue; // Proceed to the next iteration (which exits)
+        }
+
+        // Display the updated game map
         displayMap(coins);
     }
+    // Optional: Save the profile if necessary here
+    // saveProfile(username, coins); // Uncomment if you need to save upon exit
 }
+
+
+
 
 int main() {
     Game game;
+    double coins = 100;
 
     while (true) {
         displayMainMenu();  // Display main menu
