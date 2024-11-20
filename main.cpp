@@ -142,46 +142,53 @@ void startGame(const string& username, double& coins) {
 
 
 int main() {
-    Game game;
-    double coins = 100;
+    string username;
+    int coins = 20; // Default coins for new users
+    bool gameRunning = true;
 
-    while (true) {
-        displayMainMenu();  // Display main menu
-        int option;
-        cin >> option;
+    while (gameRunning) {
+        displayMainMenu();  // Display the main menu
+        int choice;
+        cin >> choice;
 
-        switch (option) {
-        case 1: {  // Start New Game
-            cout << "Enter your username: ";
-            string username;
+        switch (choice) {
+        case 1: // Create New User
+            cout << "Enter a new username: ";
             cin >> username;
 
-            if (usernameExists(username)) {
-                cout << "Username already exists. Please choose a different username.\n";
+            // Check if the username already exists
+            int tempCoins;
+            if (usernameExists(username, tempCoins)) {
+                cout << "Username already exists! Please choose a different username.\n";
             }
             else {
-                string filename = username + ".txt";
-                game = Game(username);  // Initialize a new game with the username
-                game.saveProfile(filename);  // Save the new game profile
-                saveUsername(username); // Save username to profiles.txt
-                cout << "New game started and saved to: " << filename << endl;
-                game.enterGame();
-                startGame(username, coins); // Start the game
-                break;
+                saveUsername(username, coins);
+                cout << "Profile created for " << username << " with " << coins << " coins.\n";
             }
             break;
-        }
-        case 2: {  // Load Profile
-            if (loadGameProfile(game)) {
-                // Profile loaded and game started within the function
+
+        case 2: // Load Profile
+            cout << "Enter your username to load the profile: ";
+            cin >> username;
+
+            // Check if the username exists
+            if (usernameExists(username, coins)) {
+                cout << "Profile loaded for " << username << ". You have " << coins << " coins.\n";
+                cout << "Game starts now! Enjoy!\n";
+            }
+            else {
+                cout << "Profile not found. Returning to main menu.\n";
             }
             break;
-        }
-        case 3:  // Exit game
-            cout << "Game exited. Goodbye!\n";
-            return 0;  // Exit the program
+
+        case 3: // Exit
+            cout << "Exiting the game. Goodbye!\n";
+            gameRunning = false;
+            break;
+
         default:
-            cout << "Invalid option, please try again.\n";
+            cout << "Invalid choice. Please select a valid option.\n";
+            break;
         }
     }
 
