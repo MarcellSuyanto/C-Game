@@ -98,6 +98,9 @@ void movePlayer(char direction, double& coins, bool& exit) {
 
         else if (gameMap[newX][newY] == 'E' || gameMap[newX][newY] == 'X' || gameMap[newX][newY] == 'I' || gameMap[newX][newY] == 'T') {
             exit = true;
+            cout << "Exiting the game. Goodbye!\n";
+            updateUserCoins(username, coins); // Update the user's coins
+            gameRunning = false;
             return;
         }
         else if (gameMap[newX][newY] == ' ') {
