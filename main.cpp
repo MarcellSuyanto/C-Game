@@ -186,6 +186,8 @@ int main() {
         case 3: // Exit
             cout << "Exiting the game. Goodbye!\n";
             gameRunning = false;
+            updateUserCoins(username, coins);
+            gameRunning = false;
             break;
 
         default:
