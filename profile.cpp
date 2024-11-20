@@ -43,3 +43,33 @@ void saveUsername(const string& username, int coins) {
         file.close();
     }
 }
+
+void updateUserCoins(const string& username, int coins) {
+    vector<string> lines;
+    ifstream infile("users.txt");
+    string line;
+    bool userFound = false;
+
+    // Read file content
+    while (getline(infile, line)) {
+        // If the user is found, update their coin value
+        if (line.find(username + " ") == 0) {
+            line = username + " " + to_string(coins); // Update coins
+            userFound = true;
+        }
+        lines.push_back(line);
+    }
+    infile.close();
+
+    // If the user was not found, you can choose to add them or handle the error
+    if (!userFound) {
+        lines.push_back(username + " " + to_string(coins)); // Add new user
+    }
+
+    // Write the updated content back to the file
+    ofstream outfile("users.txt");
+    for (const auto& l : lines) {
+        outfile << l << "\n";
+    }
+    outfile.close();
+}
