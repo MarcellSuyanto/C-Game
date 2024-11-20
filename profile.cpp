@@ -3,6 +3,13 @@
 #include <sstream>
 
 using namespace std;
+void displayMainMenu() {
+    cout << "\n------ Main Menu ------\n";
+    cout << "1. Create New User\n";
+    cout << "2. Load Profile\n";
+    cout << "3. Exit\n";
+    cout << "Select an option: ";
+}
 
 // Function to check if a username exists in users.txt
 bool usernameExists(const string& username, int& coins) {
