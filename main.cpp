@@ -176,7 +176,7 @@ int main() {
             if (usernameExists(username, coins)) {
                 cout << "Profile loaded for " << username << ". You have " << coins << " coins.\n";
                 cout << "Game starts now! Enjoy!\n";
-                 startGame(username, coins);
+                startGame(username, coins);
             }
             else {
                 cout << "Profile not found. Returning to main menu.\n";
