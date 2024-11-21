@@ -63,7 +63,7 @@ void updateUserCoins(const string& username, double coins) {
     }
     infile.close();
 
-    // If the user was not found, you can choose to add them or handle the error
+    // If the user was not found
     if (!userFound) {
         cout << "Error: Username not found in users.txt. Cannot update coins.\n";
         return;
