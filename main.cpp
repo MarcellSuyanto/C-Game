@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <sstream>
 
 #include "playingcards.h"
 #include "blackjack.h"
@@ -43,7 +45,6 @@ vector<string> gameMap = {
 
 // Function to display the map
 void displayMap(double& coins) {
-
     cout << endl << "Current coins: :" << coins << endl;
     for (const auto& row : gameMap) {
         cout << row << endl;
@@ -52,7 +53,7 @@ void displayMap(double& coins) {
 }
 
 // Function to move player
-void movePlayer(char direction, double& coins, bool& exit) {
+void movePlayer(char direction, const string& username, double& coins, bool& exit) {
     int playerX = -1;
     int playerY = -1;
 
@@ -100,7 +101,6 @@ void movePlayer(char direction, double& coins, bool& exit) {
             exit = true;
             cout << "Exiting the game. Goodbye!\n";
             updateUserCoins(username, coins); // Update the user's coins
-            gameRunning = false;
             return;
         }
         else if (gameMap[newX][newY] == ' ') {
@@ -126,7 +126,7 @@ void startGame(const string& username, double& coins) {
         cin >> choice; // Get the player's move choice
 
         // Move the player based on the choice
-        movePlayer(choice, coins, exit);
+        movePlayer(choice, username, coins, exit);
         // and check if the player's coins are below zero
         if (coins < 0) {
             cout << "You have run out of coins! Exiting the game.\n";
@@ -137,16 +137,11 @@ void startGame(const string& username, double& coins) {
         // Display the updated game map
         displayMap(coins);
     }
-    // Optional: Save the profile if necessary here
-    // saveProfile(username, coins); // Uncomment if you need to save upon exit
 }
-
-
-
 
 int main() {
     string username;
-    int coins = 20; // Default coins for new users
+    double coins = 20.0; // Default coins for new users
     bool gameRunning = true;
 
     while (gameRunning) {
@@ -160,7 +155,7 @@ int main() {
             cin >> username;
 
             // Check if the username already exists
-            int tempCoins;
+            double tempCoins;
             if (usernameExists(username, tempCoins)) {
                 cout << "Username already exists! Please choose a different username.\n";
             }
@@ -189,8 +184,7 @@ int main() {
         case 3: // Exit
             cout << "Exiting the game. Goodbye!\n";
             gameRunning = false;
-            updateUserCoins(username, coins);
-            gameRunning = false;
+            updateUserCoins(username, coins);  // Update the user profile before exit
             break;
 
         default:
