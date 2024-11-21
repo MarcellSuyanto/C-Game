@@ -1,6 +1,8 @@
 #include "profile.h"
 #include <fstream>
 #include <sstream>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 void displayMainMenu() {
@@ -12,7 +14,7 @@ void displayMainMenu() {
 }
 
 // Function to check if a username exists in users.txt
-bool usernameExists(const string& username, int& coins) {
+bool usernameExists(const string& username, double& coins) {
     ifstream file("users.txt");
     if (!file.is_open()) {
         return false;
@@ -22,7 +24,7 @@ bool usernameExists(const string& username, int& coins) {
     while (getline(file, line)) {
         stringstream ss(line);
         string storedUsername;
-        int storedCoins;
+        double storedCoins;
         ss >> storedUsername >> storedCoins;
 
         if (storedUsername == username) {
@@ -36,7 +38,7 @@ bool usernameExists(const string& username, int& coins) {
 }
 
 // Function to save a new username and coins to users.txt
-void saveUsername(const string& username, int coins) {
+void saveUsername(const string& username, double coins) {
     ofstream file("users.txt", ios::app);
     if (file.is_open()) {
         file << username << " " << coins << "\n";
@@ -44,7 +46,7 @@ void saveUsername(const string& username, int coins) {
     }
 }
 
-void updateUserCoins(const string& username, int coins) {
+void updateUserCoins(const string& username, double coins) {
     vector<string> lines;
     ifstream infile("users.txt");
     string line;
@@ -63,7 +65,8 @@ void updateUserCoins(const string& username, int coins) {
 
     // If the user was not found, you can choose to add them or handle the error
     if (!userFound) {
-        lines.push_back(username + " " + to_string(coins)); // Add new user
+        cout << "Error: Username not found in users.txt. Cannot update coins.\n";
+        return;
     }
 
     // Write the updated content back to the file
