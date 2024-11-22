@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <sstream>
 
 #include "playingcards.h"
 #include "blackjack.h"
@@ -43,7 +45,6 @@ vector<string> gameMap = {
 
 // Function to display the map
 void displayMap(double& coins) {
-
     cout << endl << "Current coins: :" << coins << endl;
     for (const auto& row : gameMap) {
         cout << row << endl;
@@ -52,7 +53,7 @@ void displayMap(double& coins) {
 }
 
 // Function to move player
-void movePlayer(char direction, double& coins, bool& exit) {
+void movePlayer(char direction, const string& username, double& coins, bool& exit) {
     int playerX = -1;
     int playerY = -1;
 
@@ -102,6 +103,8 @@ void movePlayer(char direction, double& coins, bool& exit) {
 
         else if (gameMap[newX][newY] == 'E' || gameMap[newX][newY] == 'X' || gameMap[newX][newY] == 'I' || gameMap[newX][newY] == 'T') {
             exit = true;
+            cout << "Exiting the game. Goodbye!\n";
+            updateUserCoins(username, coins); // Update the user's coins
             return;
         }
         else if (gameMap[newX][newY] == ' ') {
@@ -127,7 +130,7 @@ void startGame(const string& username, double& coins) {
         cin >> choice; // Get the player's move choice
 
         // Move the player based on the choice
-        movePlayer(choice, coins, exit);
+        movePlayer(choice, username, coins, exit);
         // and check if the player's coins are below zero
         if (coins < 0) {
             cout << "You have run out of coins! Exiting the game.\n";
@@ -138,54 +141,59 @@ void startGame(const string& username, double& coins) {
         // Display the updated game map
         displayMap(coins);
     }
-    // Optional: Save the profile if necessary here
-    // saveProfile(username, coins); // Uncomment if you need to save upon exit
 }
 
-
-
-
 int main() {
-    Game game;
-    double coins = 100;
+    string username;
+    double coins = 20.0; // Default coins for new users
+    bool gameRunning = true;
 
-    while (true) {
-        displayMainMenu();  // Display main menu
-        int option;
-        cin >> option;
+    while (gameRunning) {
+        displayMainMenu();  // Display the main menu
+        int choice;
+        cin >> choice;
 
-        switch (option) {
-        case 1: {  // Start New Game
-            cout << "Enter your username: ";
-            string username;
+        switch (choice) {
+        case 1: // Create New User
+            cout << "Enter a new username: ";
             cin >> username;
 
-            if (usernameExists(username)) {
-                cout << "Username already exists. Please choose a different username.\n";
+            // Check if the username already exists
+            double tempCoins;
+            if (usernameExists(username, tempCoins)) {
+                cout << "Username already exists! Please choose a different username.\n";
             }
             else {
-                string filename = username + ".txt";
-                game = Game(username);  // Initialize a new game with the username
-                game.saveProfile(filename);  // Save the new game profile
-                saveUsername(username); // Save username to profiles.txt
-                cout << "New game started and saved to: " << filename << endl;
-                game.enterGame();
-                startGame(username, coins); // Start the game
-                break;
+                saveUsername(username, coins);
+                cout << "Profile created for " << username << " with " << coins << " coins.\n";
+                startGame(username, coins);
             }
             break;
-        }
-        case 2: {  // Load Profile
-            if (loadGameProfile(game)) {
-                // Profile loaded and game started within the function
+
+        case 2: // Load Profile
+            cout << "Enter your username to load the profile: ";
+            cin >> username;
+
+            // Check if the username exists
+            if (usernameExists(username, coins)) {
+                cout << "Profile loaded for " << username << ". You have " << coins << " coins.\n";
+                cout << "Game starts now! Enjoy!\n";
+                startGame(username, coins);
+            }
+            else {
+                cout << "Profile not found. Returning to main menu.\n";
             }
             break;
-        }
-        case 3:  // Exit game
-            cout << "Game exited. Goodbye!\n";
-            return 0;  // Exit the program
+
+        case 3: // Exit
+            cout << "Exiting the game. Goodbye!\n";
+            gameRunning = false;
+            updateUserCoins(username, coins);  // Update the user profile before exit
+            break;
+
         default:
-            cout << "Invalid option, please try again.\n";
+            cout << "Invalid choice. Please select a valid option.\n";
+            break;
         }
     }
 

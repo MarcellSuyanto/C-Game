@@ -1,37 +1,22 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef PROFILE_H
+#define PROFILE_H
 
-#include <iostream>
-#include <fstream>
 #include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 #include <vector>
 
-using namespace std;
-
-// Game Class
-class Game {
-public:
-    string username;
-    int level;
-    int coins;
-    int coinsNeeded;
-
-    Game();
-    Game(const string& name);
-
-    bool loadProfile(const string& filename);
-    void saveProfile(const string& filename) const;
-    void enterGame();
-};
-
-// Functions to manage profiles
-bool profileExists(const string& filename);
-void saveUsername(const string& username);
-vector<string> getAllUsernames();
-bool usernameExists(const string& username);
-bool loadGameProfile(Game& game);
-
-// Main Menu Function
+// Function to display the main menu
 void displayMainMenu();
 
-#endif // GAME_H
+// Function to check if a username exists in users.txt and get the user's coins
+bool usernameExists(const std::string& username, double& coins);
+
+// Function to save a new username and coins to users.txt
+void saveUsername(const std::string& username, double coins);
+
+// Function to update the user's coins in users.txt
+void updateUserCoins(const std::string& username, double coins);
+
+#endif // PROFILE_H
