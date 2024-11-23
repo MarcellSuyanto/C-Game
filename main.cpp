@@ -87,17 +87,29 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
 
     if (newX >= 0 && newX < MAP_HEIGHT && newY >= 0 && newY < MAP_WIDTH) {
         if (gameMap[newX][newY] == '1') {
+            for(int i; i<5; i++){
+                cout << " " << endl;
+            }
             cout << "Welcome to Blackjack!" << endl;
             Blackjack(coins); // Call Blackjack game
         }
         else if (gameMap[newX][newY] == '2') {
+            for(int i; i<5; i++){
+                cout << " " << endl;
+            }
             cout << "Welcome to Higher or Lower!" << endl;
             HighOrLow(coins); // Call HighOrLow game
         }
         else if (gameMap[newX][newY] == '3') {
+            for(int i; i<5; i++){
+                cout << " " << endl;
+            }
             Slots(coins); // Call Slot Machine
         }
         else if (gameMap[newX][newY] == '4') {
+            for(int i; i<5; i++){
+                cout << " " << endl;
+            }
             Baccarat(coins); // Call Baccarat
         }
 
@@ -154,10 +166,16 @@ int main() {
     while (gameRunning) {
         displayMainMenu();  // Display the main menu
         int choice;
-        cin >> choice;
+        string temp;
+        cin >> temp;
+        while (!getValidNumber(temp, choice, 0, 4)){
+            cout << "Invalid choice. Try again: ";
+            cin >> temp;
+        }
         if (choice == 1){ // Create New User
             cout << "Enter a new username: ";
             cin >> username;
+            
 
             // Check if the username already exists
             int tempCoins;
@@ -191,9 +209,6 @@ int main() {
             gameRunning = false;
             updateUserCoins(username, coins);  // Update the user profile before exit
             break;
-        }
-        else{
-            cout << "Invalid choice. Please select a valid option.\n";
         }
     }
 

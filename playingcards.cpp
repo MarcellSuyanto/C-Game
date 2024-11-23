@@ -14,12 +14,10 @@ using namespace std;
 vector<Card> createDeck() {
     vector<Card> deck;
 
-    // Initialize random number generator
-    random_device rd;  // Obtain a random number from hardware
-    mt19937 eng(rd()); // Seed the generator
+    srand (time(NULL));
 
     char ranks[] = {'2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'};
-    char suits[] = {'H', 'D', 'S', 'C'};
+    char suits[] = {'H','D','S','C'};
 
     for (char rank : ranks) {
         for (char suit : suits) {
@@ -27,11 +25,11 @@ vector<Card> createDeck() {
         }
     }
 
-    // Shuffle the deck using std::shuffle and the random engine
-    shuffle(deck.begin(), deck.end(), eng);
+    random_shuffle(deck.begin(), deck.end());
 
     return deck;
 }
+
 
 bool getValidNumber(const string& input, int& number, int minRange, int maxRange) {
     stringstream ss(input); // Create a stringstream from the input

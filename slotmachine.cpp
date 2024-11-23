@@ -130,7 +130,7 @@ void Slots(int& coins){
         }
         
         if (slots[0] == slots[1] && slots[1] == slots[2]){
-            coins += 3*bet;
+            coins += 10*bet;
             cout << "WIN 3" << endl;
         } else if (slots[0] == slots[1] && slots[0] != slots[2] || slots[0] == slots[2] && slots[0] != slots[1] || slots[1] == slots[2] && slots[1] != slots[0]){
             const int tempCoins = coins-bet;
