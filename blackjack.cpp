@@ -10,6 +10,7 @@ using namespace std;
 
 void PrintCards(vector<Card> dealerDeck, vector<Card> playerDeck, bool hit){
     //Printing Dealer's Deck
+    cout << "DEALER" << endl;
     for (int i=0; i < dealerDeck.size(); i++){
         cout << "+----------+  ";
     }
@@ -48,6 +49,7 @@ void PrintCards(vector<Card> dealerDeck, vector<Card> playerDeck, bool hit){
 
     //Printing Player's Deck
     int num = playerDeck.size();
+    cout << "PLAYER" << endl;
     for (int i=0; i < num; i++){
         cout << "+----------+  ";
     }
