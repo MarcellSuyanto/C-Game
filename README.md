@@ -19,25 +19,25 @@ Try your best to get as many coins as possible without going bankrupt.
 - However, if the Player's hand exceeds 21, they lose
 - If the Player's hand is 21, they automatically win, no matter the Dealer's hand
 - If the Dealer's hand is greater than or equal to the Player's, the Dealer wins
+- The Dealer can add more cards to their hand while their hand is less than 17
+- However, if the Dealer's hand exceeds 21, they lose
+- Face cards equal to 10, Aces can switch from 1 and 11 and will depend on the hand.
+
 ### Higher or Lower
+- The Player will be presented 5 cards: 1 face-up and 4 face-down
+- The goal is the game is to guess whether the next cards is higher/lower than the previous card
+- The Player must guess all 4 cards correctly to win
+- If the Player fails at any point, they lose
+- The cards start from Ace to King in ascending order
 
 ### Baccarat
 
+
 ### Slot Machine
+- High risk, high reward
+- Player must get three identical shapes to win, gaining 10x their bet
+- If the player gets two identical shapes, they lose their bet
+- If the player gets no identical shapes, they lose 2x their bet
 
 ### Note
 - All games start with player placing a bet
-
-
-HOW TO PLAY
-    1. Player places bets
-    2. Dealer deals one card face up to player and themself
-    3. Dealer deals one more card face up to player and one face down to themselves
-    4. ranks = 2-10 equivalent value, J,Q,K = 10, A can be 11 or 1 
-    5. if hand totals to 21, auto win
-    6. else, can ask for a hit until bust and lose
-    7. or stay and dealer flips face down card
-        7i. if 16 or under, take another card
-        7ii. if 17 or higher, stay
-    8. if higher than dealer, win
-    9. if equal or lower to dealer, lose
