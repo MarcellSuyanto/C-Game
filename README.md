@@ -39,8 +39,7 @@ Try your best to get as many coins as possible without going bankrupt.
 - If the player gets two identical shapes, they lose their bet
 - If the player gets no identical shapes, they lose 2x their bet
 
-### Note
-- All games start with player placing a bet
+Note: All games start with player placing a bet
 
 ## Running the Game
 To compile our programs, simply do
@@ -51,4 +50,31 @@ and to run the game, do
 ```bash
 ./run
 ```
+You will then be asked to either make a new profile, or load an existing one
+New profiles will start with 1000 coins, bankrupted profiles will be given 100 coins
+
+Then, you will be placed in our casino
+
+#################################################,
+\#                                               #,
+\#       BLACKJACK           HIGHER OR LOWER     #,
+\#                                               #,
+\#      $$$$$$$$$$$                              #,
+\#      $$$     $$$             <<<<^>>>>        #,
+\#      $$$$$$$$$$$             <<<<v>>>>        #,
+\#          |1|                    |2|           #,
+#----------| |--------------------| |----       #,
+ E                                      |       #,
+ X                                      |       #,
+ I       @                              |       #,
+ T                                      |       #,
+#----------| |--------------------| |----       #,
+\#          |3|                    |4|           #,
+\#      !!! !!! !!!               &&&&&          #,
+\#      !!! !!! !!!              &&&&&&&         #,
+\#      !!! !!! !!!               &&&&&          #,
+\#                                               #,
+\#         SLOTS                BACCARAT         #,
+\#                                               #,
+#################################################
 
