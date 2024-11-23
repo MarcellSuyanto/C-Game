@@ -34,10 +34,21 @@ Try your best to get as many coins as possible without going bankrupt.
 
 
 ### Slot Machine
-- High risk, high reward
+- High risk, High reward
 - Player must get three identical shapes to win, gaining 10x their bet
 - If the player gets two identical shapes, they lose their bet
 - If the player gets no identical shapes, they lose 2x their bet
 
 ### Note
 - All games start with player placing a bet
+
+## Running the Game
+To compile our programs, simply do
+```bash
+make
+```
+and to run the game, do
+```bash
+./run
+```
+
