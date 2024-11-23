@@ -44,7 +44,7 @@ void PrintCards(vector<Card> selectedCards, int current){
 
 
 
-void HighOrLow(double &coins){ 
+void HighOrLow(int &coins){ 
     /*
     HOW TO PLAY
     1. Get 4 cards face down and 1 face up
@@ -64,7 +64,7 @@ void HighOrLow(double &coins){
         */
         string temp;
         int current = 1; //current card being opened 1-4
-        double bet;
+        int bet;
         cout << "How much would you like to bet: ";
         cin >> temp;
         while (!getValidNumber(temp, bet, 0, coins)){
@@ -160,9 +160,4 @@ void HighOrLow(double &coins){
         }
     }
     
-}
-
-int main(){
-    double coins = 20.00;
-    HighOrLow(coins);
 }

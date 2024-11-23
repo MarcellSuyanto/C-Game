@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 #include "playingcards.h"
 
@@ -86,7 +87,7 @@ int getSumBaccarat(vector<Card> deck){
     return total;
 }
 
-void Baccarat(double& coins){
+void Baccarat(int& coins){
     /*
     HOW TO PLAY
     1. Bet on either banker or player or tie
@@ -110,7 +111,7 @@ void Baccarat(double& coins){
     while(true){
         vector<Card> newDeck = createDeck();
         char placeBet; 
-        double bet;
+        int bet;
         string temp;
 
         cout << "Where would you like to place your bet?" << endl;
@@ -212,7 +213,8 @@ void Baccarat(double& coins){
             coins += 8*bet;
             cout << "You win: " << 8*bet << endl;
         } else{
-            coins -= bet;
+            const int tempCoins = coins-bet;
+            coins = max(tempCoins,0);
             cout << "You lose: " << bet << endl;
         }
         cout << "Net Worth: " << coins << endl;

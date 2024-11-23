@@ -14,6 +14,6 @@ int getSum(vector<Card> deck);
 
 string CheckBust(vector<Card> deck);
 
-void Blackjack(double &coins);
+void Blackjack(int &coins);
 
 #endif

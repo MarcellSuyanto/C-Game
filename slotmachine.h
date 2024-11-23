@@ -13,6 +13,6 @@
 
 void PrintSlots(int slots[3]);
 
-void Slots(double& coins);
+void Slots(int& coins);
 
 #endif

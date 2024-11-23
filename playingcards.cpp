@@ -33,7 +33,7 @@ vector<Card> createDeck() {
     return deck;
 }
 
-bool getValidNumber(const string& input, double& number, int minRange, int maxRange) {
+bool getValidNumber(const string& input, int& number, int minRange, int maxRange) {
     stringstream ss(input); // Create a stringstream from the input
     if (!(ss >> number)) { // Try to convert the input to an integer
         return false; // Return false for invalid input

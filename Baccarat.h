@@ -10,6 +10,6 @@ void PrintCards(vector<Card> bankerDeck, vector<Card> playerDeck);
 
 int getSum(vector<Card> deck);
 
-void Baccarat(double& coins);
+void Baccarat(int& coins);
 
 #endif

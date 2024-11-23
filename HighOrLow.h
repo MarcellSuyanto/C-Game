@@ -8,7 +8,7 @@
 
 void PrintCards(vector<Card> selectedCards, int current); 
 
-void HighOrLow(double &coins);
+void HighOrLow(int &coins);
 
 #endif
 

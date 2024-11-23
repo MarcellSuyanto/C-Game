@@ -119,7 +119,7 @@ string CheckBust(vector<Card> deck){
     
 }
 
-void Blackjack(double &coins){
+void Blackjack(int &coins){
     vector<Card> deck = createDeck();
     /*
     HOW TO PLAY
@@ -138,7 +138,7 @@ void Blackjack(double &coins){
 
     while (true){ //while the player continues to sit on the blackjack table
         string temp;
-        double bet;
+        int bet;
         bool win = false;
 
         cout << "How much to bet: ";
@@ -181,7 +181,8 @@ void Blackjack(double &coins){
 
                 if (CheckBust(playerDeck) == "BUST"){ //Lose
                     cout << "BUST" << endl;
-                    coins -= bet;
+                    const int tempCoins = coins-bet;
+                    coins = max(tempCoins,0);
                     cout << "Net Worth: " << coins << endl;
                     end = true;
                 }else if (CheckBust(playerDeck) == "BLACKJACK"){ //Win
@@ -205,7 +206,8 @@ void Blackjack(double &coins){
                 end = true;
             }else if (CheckBust(dealerDeck) == "BLACKJACK"){
                 cout << "LOSE" << endl;
-                coins -= bet;
+                const int tempCoins = coins-bet;
+                coins = max(tempCoins,0);
                 cout << "Net Worth: " << coins << endl;
                 end = true;
             }
@@ -229,7 +231,8 @@ void Blackjack(double &coins){
             if (getSumBlackjack(dealerDeck) >= getSumBlackjack(playerDeck)){
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
-                coins -= bet;
+                const int tempCoins = coins-bet;
+                coins = max(tempCoins,0);
                 cout << "Net Worth: " << coins << endl;
                 end = true;
                 break;
@@ -237,7 +240,8 @@ void Blackjack(double &coins){
             if (dealer_count == 5){
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
-                coins -= bet;
+                const int tempCoins = coins-bet;
+                coins = max(tempCoins,0);
                 cout << "Net Worth: " << coins << endl;
                 end = true;
                 break;
@@ -247,7 +251,8 @@ void Blackjack(double &coins){
             if (getSumBlackjack(dealerDeck) >= getSumBlackjack(playerDeck)){
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
-                coins -= bet;
+                const int tempCoins = coins-bet;
+                coins = max(tempCoins,0);
                 cout << "Net Worth: " << coins << endl;
             }else{
                 PrintCards(dealerDeck, playerDeck, hit);

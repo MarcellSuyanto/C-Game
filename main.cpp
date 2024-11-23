@@ -44,7 +44,7 @@ vector<string> gameMap = {
 };
 
 // Function to display the map
-void displayMap(double& coins) {
+void displayMap(int& coins) {
     cout << endl << "Current coins: :" << coins << endl;
     for (const auto& row : gameMap) {
         cout << row << endl;
@@ -53,7 +53,7 @@ void displayMap(double& coins) {
 }
 
 // Function to move player
-void movePlayer(char direction, const string& username, double& coins, bool& exit) {
+void movePlayer(char direction, const string& username, int& coins, bool& exit) {
     int playerX = -1;
     int playerY = -1;
 
@@ -104,6 +104,9 @@ void movePlayer(char direction, const string& username, double& coins, bool& exi
         else if (gameMap[newX][newY] == 'E' || gameMap[newX][newY] == 'X' || gameMap[newX][newY] == 'I' || gameMap[newX][newY] == 'T') {
             exit = true;
             cout << "Exiting the game. Goodbye!\n";
+            if (coins == 0){
+                coins = 50;
+            }
             updateUserCoins(username, coins); // Update the user's coins
             return;
         }
@@ -112,15 +115,15 @@ void movePlayer(char direction, const string& username, double& coins, bool& exi
             gameMap[newX][newY] = playerSymbol; // Set the new position
         }
         else if (gameMap[newX][newY] == '#') {
-            cout << "Movement blocked by wall!" << endl;
+            cout << "Out of Bounds!" << endl;
         }
     }
     else {
-        cout << "Movement blocked by wall or out of bounds!" << endl;
+        cout << "Out of Bounds!" << endl;
     }
 }
 
-void startGame(const string& username, double& coins) {
+void startGame(const string& username, int& coins) {
     displayMap(coins); // Display the initial map
     bool exit = false; // Toggle mechanism, to force kick out only if coins < 0
 
@@ -145,21 +148,19 @@ void startGame(const string& username, double& coins) {
 
 int main() {
     string username;
-    double coins = 20.0; // Default coins for new users
+    int coins = 1000; // Default coins for new users
     bool gameRunning = true;
 
     while (gameRunning) {
         displayMainMenu();  // Display the main menu
         int choice;
         cin >> choice;
-
-        switch (choice) {
-        case 1: // Create New User
+        if (choice == 1){ // Create New User
             cout << "Enter a new username: ";
             cin >> username;
 
             // Check if the username already exists
-            double tempCoins;
+            int tempCoins;
             if (usernameExists(username, tempCoins)) {
                 cout << "Username already exists! Please choose a different username.\n";
             }
@@ -168,9 +169,9 @@ int main() {
                 cout << "Profile created for " << username << " with " << coins << " coins.\n";
                 startGame(username, coins);
             }
-            break;
-
-        case 2: // Load Profile
+            
+        }
+        else if (choice == 2){ // Load Profile
             cout << "Enter your username to load the profile: ";
             cin >> username;
 
@@ -184,16 +185,15 @@ int main() {
                 cout << "Profile not found. Returning to main menu.\n";
             }
             break;
-
-        case 3: // Exit
+        }
+        else if (choice == 3){ // Exit
             cout << "Exiting the game. Goodbye!\n";
             gameRunning = false;
             updateUserCoins(username, coins);  // Update the user profile before exit
             break;
-
-        default:
+        }
+        else{
             cout << "Invalid choice. Please select a valid option.\n";
-            break;
         }
     }
 

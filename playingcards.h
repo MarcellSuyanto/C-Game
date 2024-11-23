@@ -11,6 +11,6 @@ struct Card {
     char suit; 
 };
 vector<Card> createDeck();
-bool getValidNumber(const string& input, double& number, int minRange, int maxRange);
+bool getValidNumber(const string& input, int& number, int minRange, int maxRange);
 
 #endif

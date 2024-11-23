@@ -14,7 +14,7 @@ void displayMainMenu() {
 }
 
 // Function to check if a username exists in users.txt
-bool usernameExists(const string& username, double& coins) {
+bool usernameExists(const string& username, int& coins) {
     ifstream file("users.txt");
     if (!file.is_open()) {
         return false;
@@ -24,7 +24,7 @@ bool usernameExists(const string& username, double& coins) {
     while (getline(file, line)) {
         stringstream ss(line);
         string storedUsername;
-        double storedCoins;
+        int storedCoins;
         ss >> storedUsername >> storedCoins;
 
         if (storedUsername == username) {
@@ -38,7 +38,7 @@ bool usernameExists(const string& username, double& coins) {
 }
 
 // Function to save a new username and coins to users.txt
-void saveUsername(const string& username, double coins) {
+void saveUsername(const string& username, int coins) {
     ofstream file("users.txt", ios::app);
     if (file.is_open()) {
         file << username << " " << coins << "\n";
@@ -46,7 +46,7 @@ void saveUsername(const string& username, double coins) {
     }
 }
 
-void updateUserCoins(const string& username, double coins) {
+void updateUserCoins(const string& username, int coins) {
     vector<string> lines;
     ifstream infile("users.txt");
     string line;

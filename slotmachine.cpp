@@ -73,7 +73,7 @@ void PrintSlots(int slots[3]){
         "      |      "
     };
 
-    vector<string> slotshapes[3];
+    vector<string>* slotshapes = new vector<string>[3];
 
     for (int i = 0; i < 3; i++) {
         if (slots[i] == 0) {
@@ -95,10 +95,10 @@ void PrintSlots(int slots[3]){
     for (int i = 0; i<7; i++){
         cout << slotshapes[0][i] << "     " << slotshapes[1][i] << "     " << slotshapes[2][i] << endl;
     }
-
+    delete[] slotshapes;
 }
 
-void Slots(double& coins){
+void Slots(int& coins){
     /*
     HOW TO PLAY
     1. Input how much money to bet
@@ -110,7 +110,7 @@ void Slots(double& coins){
 
     while (true){ 
         string temp;
-        double bet;
+        int bet;
         
         cout << "How much to bet: ";
         cin >> temp;
@@ -129,14 +129,16 @@ void Slots(double& coins){
             
         }
         
-        if (slots[0] == slots[1] && slots[1] == slots[0]){
+        if (slots[0] == slots[1] && slots[1] == slots[2]){
             coins += 3*bet;
             cout << "WIN 3" << endl;
         } else if (slots[0] == slots[1] && slots[0] != slots[2] || slots[0] == slots[2] && slots[0] != slots[1] || slots[1] == slots[2] && slots[1] != slots[0]){
-            coins -= bet;
+            const int tempCoins = coins-bet;
+            coins = max(tempCoins,0);
             cout << "LOSE 2" << endl;
         } else{
-            coins -= 2*bet;
+            const int tempCoins = coins-2*bet;
+            coins = max(tempCoins,0);
             cout << "LOSE 0" << endl;
         }
         PrintSlots(slots);
