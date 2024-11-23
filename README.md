@@ -59,7 +59,11 @@ Then, you will be placed in our casino, use the WASD keys and press enter to mov
 ![Casino](Casino_Map.png)
 
 There will be numbered chairs where you can take a seat and play the game  
+  
 You can stay at that table as long as you like, until you go bankrupt  
+  
 Once bankrupt, you will be taken back to the main menu and given 100 coins to that profile out of pity  
+  
+There is an EXIT on the left side if the player wishes to leave the casino
 
 
