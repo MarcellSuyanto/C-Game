@@ -2,6 +2,7 @@
 Welcome to Casino Royale, we exist to make your gambling wishes come true!
 
 You will be placed in a casino and 4 games will be available. You start with coins which you can use to bet inside the games.  
+  
 Try your best to get as many coins as possible without going bankrupt.
 
 ## GAMES
@@ -53,9 +54,33 @@ and to run the game, do
 You will then be asked to either make a new profile, or load an existing one
 New profiles will start with 1000 coins, bankrupted profiles will be given 100 coins
 
-Then, you will be placed in our casino, use the WASD keys and press enter to move around
-There will be numbered chairs where you can take a seat and play the game
-You can stay at that table as long as you like, until you go bankrupt
-Once bankrupt, you will be taken back to the main menu and given 100 coins to that profile out of pity
+Then, you will be placed in our casino, use the WASD keys and press enter to move around  
+
+"#################################################",  
+"#                                               #",  
+"#       BLACKJACK           HIGHER OR LOWER     #",  
+"#                                               #",  
+"#      $$$$$$$$$$$                              #",  
+"#      $$$     $$$             <<<<^>>>>        #",  
+"#      $$$$$$$$$$$             <<<<v>>>>        #",  
+"#          |1|                    |2|           #",  
+"#----------| |--------------------| |----       #",  
+" E                                      |       #",  
+" X                                      |       #",  
+" I       @                              |       #",  
+" T                                      |       #",  
+"#----------| |--------------------| |----       #",  
+"#          |3|                    |4|           #",  
+"#      !!! !!! !!!               &&&&&          #",  
+"#      !!! !!! !!!              &&&&&&&         #",  
+"#      !!! !!! !!!               &&&&&          #",  
+"#                                               #",  
+"#         SLOTS                BACCARAT         #",  
+"#                                               #",  
+"#################################################"  
+
+There will be numbered chairs where you can take a seat and play the game  
+You can stay at that table as long as you like, until you go bankrupt  
+Once bankrupt, you will be taken back to the main menu and given 100 coins to that profile out of pity  
 
 
