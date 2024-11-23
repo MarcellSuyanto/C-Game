@@ -261,6 +261,9 @@ void Blackjack(int &coins){
                 cout << "Net Worth: " << coins << endl;
             }
         }
+        if (coins == 0){
+            return;
+        }
         char again;
         cout << "Would you like to play Blackjack again? (Y/N): ";
         cin >> again;

@@ -87,29 +87,31 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
 
     if (newX >= 0 && newX < MAP_HEIGHT && newY >= 0 && newY < MAP_WIDTH) {
         if (gameMap[newX][newY] == '1') {
-            for(int i; i<5; i++){
+            for(int i=0; i<5; i++){
                 cout << " " << endl;
             }
             cout << "Welcome to Blackjack!" << endl;
             Blackjack(coins); // Call Blackjack game
         }
         else if (gameMap[newX][newY] == '2') {
-            for(int i; i<5; i++){
+            for(int i=0; i<5; i++){
                 cout << " " << endl;
             }
             cout << "Welcome to Higher or Lower!" << endl;
             HighOrLow(coins); // Call HighOrLow game
         }
         else if (gameMap[newX][newY] == '3') {
-            for(int i; i<5; i++){
+            for(int i=0; i<5; i++){
                 cout << " " << endl;
             }
+            cout << "Welcome to the Slot Machine!" << endl;
             Slots(coins); // Call Slot Machine
         }
         else if (gameMap[newX][newY] == '4') {
-            for(int i; i<5; i++){
+            for(int i=0; i<5; i++){
                 cout << " " << endl;
             }
+            cout << "Welcome to Baccarat!" << endl;
             Baccarat(coins); // Call Baccarat
         }
 
@@ -147,7 +149,7 @@ void startGame(const string& username, int& coins) {
         // Move the player based on the choice
         movePlayer(choice, username, coins, exit);
         // and check if the player's coins are below zero
-        if (coins < 0) {
+        if (coins == 0) {
             cout << "You have run out of coins! Exiting the game.\n";
             exit = true; // Set exit to true to break the loop
             continue; // Proceed to the next iteration (which exits)

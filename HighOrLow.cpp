@@ -143,7 +143,9 @@ void HighOrLow(int &coins){
             }
         }
         
-
+        if (coins == 0){
+            return;
+        }
         // Asking if they still want to play this game
         char again;
         cout << "Would you like to play Higher or Lower again? (Y/N): ";
