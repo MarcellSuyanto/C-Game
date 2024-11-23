@@ -56,28 +56,7 @@ New profiles will start with 1000 coins, bankrupted profiles will be given 100 c
 
 Then, you will be placed in our casino, use the WASD keys and press enter to move around  
 
-"#################################################",  
-"#                                               #",  
-"#       BLACKJACK           HIGHER OR LOWER     #",  
-"#                                               #",  
-"#      $$$$$$$$$$$                              #",  
-"#      $$$     $$$             <<<<^>>>>        #",  
-"#      $$$$$$$$$$$             <<<<v>>>>        #",  
-"#          |1|                    |2|           #",  
-"#----------| |--------------------| |----       #",  
-" E                                      |       #",  
-" X                                      |       #",  
-" I       @                              |       #",  
-" T                                      |       #",  
-"#----------| |--------------------| |----       #",  
-"#          |3|                    |4|           #",  
-"#      !!! !!! !!!               &&&&&          #",  
-"#      !!! !!! !!!              &&&&&&&         #",  
-"#      !!! !!! !!!               &&&&&          #",  
-"#                                               #",  
-"#         SLOTS                BACCARAT         #",  
-"#                                               #",  
-"#################################################"  
+![Casino](Casino_Map.png)
 
 There will be numbered chairs where you can take a seat and play the game  
 You can stay at that table as long as you like, until you go bankrupt  
