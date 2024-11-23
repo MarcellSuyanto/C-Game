@@ -202,13 +202,11 @@ int main() {
             else {
                 cout << "Profile not found. Returning to main menu.\n";
             }
-            break;
         }
         else if (choice == 3){ // Exit
             cout << "Exiting the game. Goodbye!\n";
             gameRunning = false;
             updateUserCoins(username, coins);  // Update the user profile before exit
-            break;
         }
     }
 
