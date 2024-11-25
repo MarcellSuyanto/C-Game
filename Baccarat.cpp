@@ -92,7 +92,7 @@ void Baccarat(int& coins){
     HOW TO PLAY
     1. Bet on either banker or player or tie
     2. Two cards are dealt for both player and banker
-    3. 0-9 retains their value, (10, J, Q, K) are zero, and Ace is 1
+    3. 2-9 retains their value, (10, J, Q, K) are zero, and Ace is 1
     4. If total value >9, take the first digit
     5. Third Card Draw Player:
         a. If Player total is 0-5, player draws a third card
