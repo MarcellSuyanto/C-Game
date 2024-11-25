@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <stdio.h>   /* printf, NULL */
+#include <stdio.h>   /* NULL */
 #include <stdlib.h>  /* srand, rand */
 #include <ctime>
 #include <vector>
