@@ -91,15 +91,22 @@ There is an EXIT on the left side if the player wishes to leave the casino
 
 ## Code Requirements
 ### Generation of Random Events
+- Random generation of a deck of cards; [playingcards.cpp](playingcards.cpp)
+- Random generation of slots; [slotmachine.cpp](slotmachine.cpp)
 
 ### Data Structures for Storing Data
+- Vectors to store deck of cards, cards in hand and slots; ALL
+- Struct to store individual cards; [playingcards.cpp](playingcards.cpp)
 
 ### Dynamic Memory Management
+- Dynamic memory used for slots; [slotmachine.cpp](slotmachine.cpp)
 
 ### File Input/Output
+- File storage to record player profiles (username and coins); [profile.cpp](profile.cpp)
 
 ### Program codes in Multiple Files
+- Code separated into multiple files
+- Files are combined in [main.cpp](main.cpp)
 
-### Proper Indentation and Naming Styles
-
-### In-code Documentation
+### Proper Indentation and Naming Styles and In-code Documentation
+- Ensures readability and strengthens collaborativity
