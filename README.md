@@ -32,6 +32,13 @@ Try your best to get as many coins as possible without going bankrupt.
 - The cards start from Ace to King in ascending order
 
 ### Baccarat
+- The player can put their bet on either: PLAYER, BANKER, TIE
+- Two cards are dealt to each the Player and Banker (Dealer)
+- Cards 2-9 retain their value, Ace is 1, 10 and face cards are 0
+- If the total of one's hand exceeds 9, we only take the ones digit as the hand total
+- The hand closest to 9 wins
+- There exists an extensive third card draw rule, open to the link below for reference  
+[Baccarat](https://gathertogethergames.com/baccarat)
 
 
 ### Slot Machine
