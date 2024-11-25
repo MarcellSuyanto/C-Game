@@ -5,6 +5,11 @@ You will be placed in a casino and 4 games will be available. You start with coi
   
 Try your best to get as many coins as possible without going bankrupt.
 
+## Contributors
+- Dang Kow Parrik Hiram 3035962300
+- Qiao Yuhan 3036265357
+- Suyanto Gregorius Marcell 3036254102
+
 ## GAMES
 - Blackjack
 - Higher or Lower
@@ -37,8 +42,7 @@ Try your best to get as many coins as possible without going bankrupt.
 - Cards 2-9 retain their value, Ace is 1, 10 and face cards are 0
 - If the total of one's hand exceeds 9, we only take the ones digit as the hand total
 - The hand closest to 9 wins
-- There exists an extensive third card draw rule, open to the link below for reference  
-[Baccarat](https://gathertogethergames.com/baccarat)
+- There exists an extensive third card draw rule, open to the link provided for reference [Third Card Rule](https://gathertogethergames.com/baccarat)
 
 
 ### Slot Machine
@@ -73,4 +77,29 @@ Once bankrupt, you will be taken back to the main menu and given 100 coins to th
   
 There is an EXIT on the left side if the player wishes to leave the casino
 
+## Libraries
+- **iostream**: Input and Output
+- **string**: Handling string variable types and operations
+- **vector**: Handling vector variable types and operations
+- **algorithm**: Used for __random_shuffle()__; shuffling the deck of cards
+- **fstream**: Input and Output of file handling for recording player profiles
+- **sstream**: Used for input string validation
+- **stdio.h**: Used for __NULL__/__nullptr__
+- **cstdlib**: Random generation
+- **ctime**: Used for time; alongside random
+- **stdlib.h**: Used for __srand()__ and random; random-generated events
 
+## Code Requirements
+### Generation of Random Events
+
+### Data Structures for Storing Data
+
+### Dynamic Memory Management
+
+### File Input/Output
+
+### Program codes in Multiple Files
+
+### Proper Indentation and Naming Styles
+
+### In-code Documentation
