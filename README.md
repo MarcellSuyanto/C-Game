@@ -6,9 +6,9 @@ You will be placed in a casino and 4 games will be available. You start with coi
 Try your best to get as many coins as possible without going bankrupt.
 
 ## Contributors
-- Dang Kow Parrik Hiram 3035962300
-- Qiao Yuhan 3036265357
-- Suyanto Gregorius Marcell 3036254102
+- Dang Kow Parrik Hiram [3035962300](https://github.com/ParrikD)
+- Qiao Yuhan [3036265357](https://github.com/Justin-hhhhh)
+- Suyanto Gregorius Marcell [3036254102](https://github.com/MarcellSuyanto)
 
 ## GAMES
 - Blackjack
