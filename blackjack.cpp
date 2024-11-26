@@ -9,6 +9,10 @@
 using namespace std;
 
 void PrintCards(vector<Card> dealerDeck, vector<Card> playerDeck, bool hit){
+    //Input: vector(Dealer and Player deck of cards), boolean(whether the player hit a new card)
+    //Output: void
+    //Prints the cards currently on the table
+
     //Printing Dealer's Deck
     cout << "DEALER" << endl;
     for (int i=0; i < dealerDeck.size(); i++){
@@ -22,7 +26,7 @@ void PrintCards(vector<Card> dealerDeck, vector<Card> playerDeck, bool hit){
         }
         cout << endl;
     }
-    if (hit == true){
+    if (hit == true){ // If the player is still in hit phase, only the first card of the dealer is face up
         for (int i=0; i<2; i++){
             cout << "|    " << dealerDeck[0].rank << dealerDeck[0].suit << "    |  " << "|          |  ";
             break;
@@ -81,15 +85,19 @@ void PrintCards(vector<Card> dealerDeck, vector<Card> playerDeck, bool hit){
 }
 
 int getSumBlackjack(vector<Card> deck){
+    //Input: vector(Any deck of cards)
+    //Output: void
+    //Gets the sum of the hand, according to the rules of Blackjack
+
     int length = deck.size();
     int total = 0;
     int Ace_count = 0;
     for (int i=0; i<length; i++){
         char temp = deck[i].rank;
         int num; 
-        if (temp == 'T' || temp == 'J' || temp == 'Q' || temp == 'K' ){
+        if (temp == 'T' || temp == 'J' || temp == 'Q' || temp == 'K' ){ //face cards are 10
             num = 10;
-        }else if (temp == 'A') {
+        }else if (temp == 'A') { //Ace can be 11, or 1. Ace_count explained below
             num= 11;
             Ace_count ++;
         }else {
@@ -98,7 +106,11 @@ int getSumBlackjack(vector<Card> deck){
         total += num;
         
 
-        while(total > 21 && Ace_count > 0){
+        while(total > 21 && Ace_count > 0){ 
+            /*If there exists more than one Ace in the hand that causes the 
+            hand's value to exceed 21, keep changing the aces, one by one, from 
+            11 to 1 until the hand's value is below 21
+            */
             total -= 10;
             Ace_count--;
         }
@@ -108,6 +120,9 @@ int getSumBlackjack(vector<Card> deck){
 }
 
 string CheckBust(vector<Card> deck){
+    //Input: vector(Any deck of cards)
+    //Output: string(declaration of win/lose status)
+    //Checks if the hand in play exceeds 21 aka BUST or equals 21 aka BLACKJACK
     int total = getSumBlackjack(deck);
     if (total > 21){
         return "BUST";
@@ -120,7 +135,10 @@ string CheckBust(vector<Card> deck){
 }
 
 void Blackjack(int &coins){
-    vector<Card> deck = createDeck();
+    //Input: int_by_reference(Player's coins)
+    //Output: void
+    //Initiates the game of blackjack, making use of its helper functions
+    
     /*
     HOW TO PLAY
     1. Player places bets
@@ -176,16 +194,16 @@ void Blackjack(int &coins){
             }
             else{
                 hit_count++;
-                playerDeck.push_back(newDeck[4+hit_count]);
+                playerDeck.push_back(newDeck[4+hit_count]); //Adds a card to the players hand
                 PrintCards(dealerDeck, playerDeck, hit);
 
-                if (CheckBust(playerDeck) == "BUST"){ //Lose
+                if (CheckBust(playerDeck) == "BUST"){ //Player Lose
                     cout << "BUST" << endl;
                     const int tempCoins = coins-bet;
                     coins = max(tempCoins,0);
                     cout << "Net Worth: " << coins << endl;
                     end = true;
-                }else if (CheckBust(playerDeck) == "BLACKJACK"){ //Win
+                }else if (CheckBust(playerDeck) == "BLACKJACK"){ //Player Win
                     cout << "BLACKJACK" << endl;
                     coins += bet*1.5;
                     cout << "Net Worth: " << coins << endl;
@@ -199,12 +217,12 @@ void Blackjack(int &coins){
 
         //Play Phase, Dealer opens the face down card
         if (end == false){
-            if (CheckBust(dealerDeck) == "BUST"){ //win
+            if (CheckBust(dealerDeck) == "BUST"){//Player win
                 cout << "WIN" << endl;
                 coins += bet*1.5;
                 cout << "Net Worth: " << coins << endl;
                 end = true;
-            }else if (CheckBust(dealerDeck) == "BLACKJACK"){
+            }else if (CheckBust(dealerDeck) == "BLACKJACK"){//Player lose
                 cout << "LOSE" << endl;
                 const int tempCoins = coins-bet;
                 coins = max(tempCoins,0);
@@ -213,13 +231,13 @@ void Blackjack(int &coins){
             }
         }
         int dealer_count = 0;
-        while (getSumBlackjack(dealerDeck) <= 16 && end == false){
+        while (getSumBlackjack(dealerDeck) <= 16 && end == false){//Keep adding to the dealer's hand while the value of the hand is <17
             dealer_count ++;
             dealerDeck.push_back(newDeck[4+hit_count+dealer_count]);
             cout << endl;
             cout << endl;
             cout << endl;
-            if (CheckBust(dealerDeck) == "BUST"){
+            if (CheckBust(dealerDeck) == "BUST"){ // Player win
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "WIN" << endl;
                 coins += bet*1.5;
@@ -228,7 +246,7 @@ void Blackjack(int &coins){
                 break;
             }
             
-            if (getSumBlackjack(dealerDeck) >= getSumBlackjack(playerDeck)){
+            if (getSumBlackjack(dealerDeck) >= getSumBlackjack(playerDeck)){ //Dealer's hand is greater than or equal to Player's
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
                 const int tempCoins = coins-bet;
@@ -237,7 +255,7 @@ void Blackjack(int &coins){
                 end = true;
                 break;
             }
-            if (dealer_count == 5){
+            if (dealer_count == 5){ //Dealer wins
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
                 const int tempCoins = coins-bet;
@@ -247,7 +265,7 @@ void Blackjack(int &coins){
                 break;
             }
         }
-        if (end == false){
+        if (end == false){ // If no winner yet
             if (getSumBlackjack(dealerDeck) >= getSumBlackjack(playerDeck)){
                 PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;

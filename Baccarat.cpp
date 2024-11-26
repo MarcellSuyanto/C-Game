@@ -5,16 +5,21 @@
 #include "playingcards.h"
 
 void PrintCards(vector<Card> bankerDeck, vector<Card> playerDeck){
-    cout << "PLAYER        ";
-    int player_size = playerDeck.size();
-    int banker_size = bankerDeck.size();
+    //Input: vector(Banker's Deck, Player's Deck)
+    //Output: void
+    //Displays the cards currently on the table
 
+    //Header
+    cout << "PLAYER        ";
+    int player_size = playerDeck.size(); 
+    int banker_size = bankerDeck.size();
     for (int i=0; i < player_size-1; i++){
         cout << "               ";
     }   
-
     cout << "     BANKER" << endl;
 
+    //Displays the cards in row
+    //Face up cards have the rank and suite in the middle, face down cards empty
     for (int i=0; i < player_size; i++){
         cout << "+----------+  ";
     }
@@ -64,54 +69,47 @@ void PrintCards(vector<Card> bankerDeck, vector<Card> playerDeck){
         cout << "  +----------+  ";
     }
     cout << endl;
-
-    //Printing Player's Deck
 }
 
 int getSumBaccarat(vector<Card> deck){
+    //Input: vector(Player/Banker deck of cards)
+    //Output: int(sum of the values of the hand, according to the rules of Baccarat)
     int length = deck.size();
     int total = 0;
     for (int i=0; i<length; i++){
         char temp = deck[i].rank;
         int num; 
-        if (temp == 'T' || temp == 'J' || temp == 'Q' || temp == 'K' ){
+        if (temp == 'T' || temp == 'J' || temp == 'Q' || temp == 'K' ){ //10 and face cards are 0
             num = 0;
-        }else if (temp == 'A') {
+        }else if (temp == 'A') { //Ace is 1
             num= 1;
         }else {
-            num = temp - '0'; 
+            num = temp - '0'; //Converts the number to integer equivalent
         }
         total += num;
     }
-    total = total%10;
+    total = total%10; //Takes only the ones digit of final total
     return total;
 }
 
 void Baccarat(int& coins){
+    //Input: int_by_reference(Player's coins)
+    //Output: void
+    // Initiates the game of Baccarat, making use of its helper functions
+
     /*
     HOW TO PLAY
     1. Bet on either banker or player or tie
     2. Two cards are dealt for both player and banker
     3. 2-9 retains their value, (10, J, Q, K) are zero, and Ace is 1
     4. If total value >9, take the first digit
-    5. Third Card Draw Player:
-        a. If Player total is 0-5, player draws a third card
-        b. If the total is 6 or 7, the Player stands.
-        c. If the total is 8 or 9 (a "natural"), the Player stands.
-    6. Third Card Draw banker:
-        a. If the Banker has a total of 0-2, they draw a third card.
-        b. If the Banker has a total of 3, they draw unless the Player's third card is an 8.
-        c. If the Banker has a total of 4, they draw if the Player's third card is 2-7.
-        d. If the Banker has a total of 5, they draw if the Player's third card is 4-7.
-        e. If the Banker has a total of 6, they draw if the Player's third card is 6 or 7.
-        f. If the Banker has a total of 7, they stand.
-        g. If player did not draw a third card, banker follows player's third card draw rules
-    7. Total closest to 9 wins
+    5. Third Card Draw Rules follows the link provided in GitHub
+    6. Total closest to 9 wins
     */
     while(true){
-        vector<Card> newDeck = createDeck();
-        char placeBet; 
-        int bet;
+        vector<Card> newDeck = createDeck(); //Shuffled deck of 52 cards
+        char placeBet; //Player's bet choice
+        int bet; //Player's bet amount
         string temp;
 
         cout << "Where would you like to place your bet?" << endl;
@@ -130,7 +128,7 @@ void Baccarat(int& coins){
             cin >> temp;
         }
 
-        vector<Card> bankerDeck(newDeck.begin(), newDeck.begin() + 2);
+        vector<Card> bankerDeck(newDeck.begin(), newDeck.begin() + 2); //Two cards for each banker and dealer initially
         vector<Card> playerDeck(newDeck.begin() + 2, newDeck.begin() + 4);
 
         PrintCards(bankerDeck, playerDeck);
@@ -139,39 +137,34 @@ void Baccarat(int& coins){
         int playerTotal = getSumBaccarat(playerDeck);
         bool playerDraw = false;
         char win = '_';
-        if ((playerTotal != 8 && playerTotal != 9) && (bankerTotal != 8 && bankerTotal != 9)){
-            if (playerTotal <= 5){
+        if ((playerTotal != 8 && playerTotal != 9) && (bankerTotal != 8 && bankerTotal != 9)){ //If neither banker nor player wins by natural hand
+            if (playerTotal <= 5){ //Player's third card draw rule
                 playerDeck.push_back(newDeck[5]);
                 playerTotal = getSumBaccarat(playerDeck);
                 playerDraw = true;
             } 
 
-            if (playerDraw == false){
+            if (playerDraw == false){ //The Player did not draw a first card
                 if (bankerTotal <= 5){
                     bankerDeck.push_back(newDeck[5]);
                     bankerTotal = getSumBaccarat(bankerDeck);
-                    cout << "1" << endl;
                 }
             } else{
+                //Third card draw rule according to the banker's hand, given the player drew a third card
                 if (bankerTotal <= 2){
                     bankerDeck.push_back(newDeck[6]);
-                    cout << "2" << endl;
                 } else if (bankerTotal == 3 && playerDeck[2].rank != 8){
                     bankerDeck.push_back(newDeck[6]);
-                    cout << "3" << endl;
                 } else if (bankerTotal == 4 && playerDeck[2].rank >= 2 && playerDeck[2].rank <= 7){
                     bankerDeck.push_back(newDeck[6]);
-                    cout << "4" << endl;
                 } else if (bankerTotal == 5 && playerDeck[2].rank >= 4 && playerDeck[2].rank <= 7){
                     bankerDeck.push_back(newDeck[6]);
-                    cout << "5" << endl;
                 } else if (bankerTotal == 6 && (playerDeck[2].rank == 6 || playerDeck[2].rank == 7)){
                     bankerDeck.push_back(newDeck[6]);
-                    cout << "6" << endl;
                 }
                 bankerTotal = getSumBaccarat(bankerDeck);
             }
-        
+        //Natural Win Conditions
         } else if ((playerTotal == 8 || playerTotal == 9) && (bankerTotal != 8 && bankerTotal != 9)){
             win = 'P';
         } else if ((bankerTotal == 8 || bankerTotal == 9) && (playerTotal != 8 && playerTotal != 9)){
@@ -179,7 +172,7 @@ void Baccarat(int& coins){
         } else if ((bankerTotal == 8 || bankerTotal == 9) && (playerTotal == 8 || playerTotal == 9)){
             win = 'T';
         }
-        if (win == '_'){
+        if (win == '_'){ //If no one has won yet
             if (bankerTotal == playerTotal){
                 win = 'T';
             } else if (bankerTotal < playerTotal){
@@ -206,13 +199,13 @@ void Baccarat(int& coins){
             cout << "BANKER WINS" << endl;
         }
         cout << " " << endl;
-        if (placeBet == win && win != 'T') {
+        if (placeBet == win && win != 'T') { //Player wins
             coins += bet;
             cout << "You win: " << bet << endl;
-        } else if (placeBet == win && win == 'T'){
+        } else if (placeBet == win && win == 'T'){ //Player wins, Tie guess gets 8x bet value
             coins += 8*bet;
             cout << "You win: " << 8*bet << endl;
-        } else{
+        } else{ //Player loses
             const int tempCoins = coins-bet;
             coins = max(tempCoins,0);
             cout << "You lose: " << bet << endl;

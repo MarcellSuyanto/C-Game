@@ -43,21 +43,26 @@ vector<string> gameMap = {
     "#################################################"
 };
 
-// Function to display the map
 void displayMap(int& coins) {
-    cout << endl << "Current coins: :" << coins << endl;
+    //Input: int_by_reference(Player's coins)
+    //Output: void
+    // Function to display the map
+    cout << endl << "Current coins: " << coins << endl;
     for (const auto& row : gameMap) {
         cout << row << endl;
     }
     cout << endl;
 }
 
-// Function to move player
+
 void movePlayer(char direction, const string& username, int& coins, bool& exit) {
+    //Input: char(direction, wasd), string_by_reference(Player usernam), int_by_reference(Player's coins), bool_by_reference(exit status)
+    //Output: void
+    //Function to move the player
     int playerX = -1;
     int playerY = -1;
 
-    for (int i = 0; i < gameMap.size(); ++i) {
+    for (int i = 0; i < gameMap.size(); ++i) { //Searches for the current position of the player
         for (int j = 0; j < gameMap[i].size(); ++j) {
             if (gameMap[i][j] == playerSymbol) {
                 playerX = i;
@@ -85,7 +90,7 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
             return;
     }
 
-    if (newX >= 0 && newX < MAP_HEIGHT && newY >= 0 && newY < MAP_WIDTH) {
+    if (newX >= 0 && newX < MAP_HEIGHT && newY >= 0 && newY < MAP_WIDTH) { //Checks for game status
         if (gameMap[newX][newY] == '1') {
             for(int i=0; i<5; i++){
                 cout << " " << endl;
@@ -116,6 +121,7 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
         }
 
         else if (gameMap[newX][newY] == 'E' || gameMap[newX][newY] == 'X' || gameMap[newX][newY] == 'I' || gameMap[newX][newY] == 'T') {
+            //If the user wishes to leave the casino
             exit = true;
             cout << "Exiting the game. Goodbye!\n";
             if (coins == 0){
@@ -138,6 +144,9 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
 }
 
 void startGame(const string& username, int& coins) {
+    //Input: string_by_reference(Player username), int_by_reference(Player's coins)
+    //Output: void
+    //Starts the game and exits when necessary
     displayMap(coins); // Display the initial map
     bool exit = false; // Toggle mechanism, to force kick out only if coins < 0
 
@@ -161,6 +170,7 @@ void startGame(const string& username, int& coins) {
 }
 
 int main() {
+    //main function of program
     string username;
     int coins = 1000; // Default coins for new users
     bool gameRunning = true;

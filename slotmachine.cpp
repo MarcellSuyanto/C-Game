@@ -9,8 +9,11 @@
 #include "playingcards.h"
 
 void PrintSlots(int slots[3]){
+    //Input: array[3](the slot shapes chosen)
+    //Output: void
+    //Prints out the slot screen with 3 shapes
+
     // 1 = Square, 2 = Circle, 3 = Triangle, 4 = Hexagon, 5 = Parallelogram, 6 = Arrow
-    vector<string> *shape = nullptr;
 
     vector<string> square = {
         "+-------------+",
@@ -73,9 +76,9 @@ void PrintSlots(int slots[3]){
         "      |      "
     };
 
-    vector<string>* slotshapes = new vector<string>[3];
+    vector<string>* slotshapes = new vector<string>[3]; //The three chosen slots
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) {//Assigning the equivalent shapes
         if (slots[i] == 0) {
             slotshapes[i] = square;
         } else if (slots[i] == 1) {
@@ -99,6 +102,9 @@ void PrintSlots(int slots[3]){
 }
 
 void Slots(int& coins){
+    //Input: int_by_reference(Player's coins)
+    //Output: void
+    //Initiates the game of slots, making use of its helper functions
     /*
     HOW TO PLAY
     1. Input how much money to bet
@@ -122,21 +128,23 @@ void Slots(int& coins){
 
         int slots[3];
         int matches;
-        srand(static_cast<unsigned int>(time(0)));
+        srand(static_cast<unsigned int>(time(0))); //seed for rand
         
         for (int i=0; i<3; i++){
-            slots[i] = rand() % 6;
+            slots[i] = rand() % 6; //3 random numbers, each in range [1,6]
             
         }
         
-        if (slots[0] == slots[1] && slots[1] == slots[2]){
+        if (slots[0] == slots[1] && slots[1] == slots[2]){ //If three identical shapes
             coins += 10*bet;
             cout << "WIN 3" << endl;
         } else if (slots[0] == slots[1] && slots[0] != slots[2] || slots[0] == slots[2] && slots[0] != slots[1] || slots[1] == slots[2] && slots[1] != slots[0]){
+            //if two identical shapes
             const int tempCoins = coins-bet;
             coins = max(tempCoins,0);
             cout << "LOSE 2" << endl;
         } else{
+            //no identical shapes
             const int tempCoins = coins-2*bet;
             coins = max(tempCoins,0);
             cout << "LOSE 0" << endl;

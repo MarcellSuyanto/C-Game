@@ -12,6 +12,9 @@
 using namespace std;
 
 vector<Card> createDeck() {
+    //Input: NA
+    //Output: vector(52 elements of struct CARD (defined in playingcards.h))
+    //Creates a deck of 52 cards and shuffles them
     vector<Card> deck;
 
     srand (time(NULL));
@@ -32,6 +35,10 @@ vector<Card> createDeck() {
 
 
 bool getValidNumber(const string& input, int& number, int minRange, int maxRange) {
+    //Input: string_by_reference(input to validate), int_by_reference(final input when validated), int min and max ranges
+    //Output: bool(Valid=TRUE)
+    //Checks to see if user input is valid, in this case input should be numeric and in range [minRange,maxRange]
+
     stringstream ss(input); // Create a stringstream from the input
     if (!(ss >> number)) { // Try to convert the input to an integer
         return false; // Return false for invalid input

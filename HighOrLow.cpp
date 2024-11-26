@@ -6,6 +6,9 @@
 using namespace std;
 
 void PrintCards(vector<Card> selectedCards, int current){
+    //Input: vector(the 5 cards selected for the game)
+    //Output: void
+    //Prints the 5 cards in row
     for (int i=0; i < 5; i++){
         cout << "+----------+  ";
     }
@@ -45,6 +48,10 @@ void PrintCards(vector<Card> selectedCards, int current){
 
 
 void HighOrLow(int &coins){ 
+    //Input: int_by_reference(Player's coins)
+    //Output: void
+    //Initiates the game of HighorLow, making use of its helper functions
+
     /*
     HOW TO PLAY
     1. Get 4 cards face down and 1 face up
@@ -57,11 +64,7 @@ void HighOrLow(int &coins){
 
     while (true){
         vector<Card> newDeck = createDeck();
-        vector<Card> selectedCards(newDeck.begin(), newDeck.begin() + 5);
-        /*
-        For Testing
-        PrintCards(selectedCards, 6);
-        */
+        vector<Card> selectedCards(newDeck.begin(), newDeck.begin() + 5); //choose 5 cards for the game
         string temp;
         int current = 1; //current card being opened 1-4
         int bet;
