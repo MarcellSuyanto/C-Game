@@ -49,10 +49,12 @@ void displayMap(int& coins) {
     // Function to display the map
     cout << endl << "Current coins: " << coins << endl;
     for (const auto& row : gameMap) {
+
         cout << row << endl;
     }
     cout << endl;
 }
+
 
 
 void movePlayer(char direction, const string& username, int& coins, bool& exit) {
@@ -62,9 +64,10 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
     int playerX = -1;
     int playerY = -1;
 
+
     for (int i = 0; i < gameMap.size(); ++i) { //Searches for the current position of the player
         for (int j = 0; j < gameMap[i].size(); ++j) {
-            if (gameMap[i][j] == playerSymbol) {
+            if (gameMap[i][j] == playerSymbol) { // Set new position of player
                 playerX = i;
                 playerY = j;
                 break;
@@ -77,28 +80,32 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
     int newY = playerY;
 
     switch (direction) {
-        case 'W': newX--; break;
-        case 'S': newX++; break;
-        case 'A': newY--; break;
-        case 'D': newY++; break;
+        case 'W': newX--; break; // Move up
         case 'w': newX--; break;
+        
+        case 'S': newX++; break; // Move down
         case 's': newX++; break;
+        
+        case 'A': newY--; break; // Move left
         case 'a': newY--; break;
+        
+        case 'D': newY++; break; // Move right
         case 'd': newY++; break;
+        
         default:
             cout << "Invalid move. Use W/A/S/D." << endl;
             return;
     }
 
-    if (newX >= 0 && newX < MAP_HEIGHT && newY >= 0 && newY < MAP_WIDTH) { //Checks for game status
-        if (gameMap[newX][newY] == '1') {
+    if (newX >= 0 && newX < MAP_HEIGHT && newY >= 0 && newY < MAP_WIDTH) { // If valid positon on map
+        if (gameMap[newX][newY] == '1') { // If character lands on 1 on the map
             for(int i=0; i<5; i++){
                 cout << " " << endl;
             }
-            cout << "Welcome to Blackjack!" << endl;
+            cout << "Welcome to Blackjack!" << endl; 
             Blackjack(coins); // Call Blackjack game
         }
-        else if (gameMap[newX][newY] == '2') {
+        else if (gameMap[newX][newY] == '2') {  
             for(int i=0; i<5; i++){
                 cout << " " << endl;
             }
@@ -120,9 +127,9 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
             Baccarat(coins); // Call Baccarat
         }
 
+        // If character goes to 'EXIT' on map
         else if (gameMap[newX][newY] == 'E' || gameMap[newX][newY] == 'X' || gameMap[newX][newY] == 'I' || gameMap[newX][newY] == 'T') {
-            //If the user wishes to leave the casino
-            exit = true;
+            exit = true; // Toggle off, exit from startGame()
             cout << "Exiting the game. Goodbye!\n";
             if (coins == 0){
                 coins = 50;
