@@ -218,11 +218,13 @@ void Blackjack(int &coins){
         //Play Phase, Dealer opens the face down card
         if (end == false){
             if (CheckBust(dealerDeck) == "BUST"){//Player win
+                PrintCards(dealerDeck, playerDeck, hit);
                 cout << "WIN" << endl;
                 coins += bet*1.5;
                 cout << "Net Worth: " << coins << endl;
                 end = true;
             }else if (CheckBust(dealerDeck) == "BLACKJACK"){//Player lose
+                PrintCards(dealerDeck, playerDeck, hit);
                 cout << "LOSE" << endl;
                 const int tempCoins = coins-bet;
                 coins = max(tempCoins,0);
