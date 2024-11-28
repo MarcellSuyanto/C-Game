@@ -137,17 +137,17 @@ void Slots(int& coins){
         
         if (slots[0] == slots[1] && slots[1] == slots[2]){ //If three identical shapes
             coins += 10*bet;
-            cout << "WIN 3" << endl;
+            cout << "WIN" << endl;
         } else if (slots[0] == slots[1] && slots[0] != slots[2] || slots[0] == slots[2] && slots[0] != slots[1] || slots[1] == slots[2] && slots[1] != slots[0]){
             //if two identical shapes
             const int tempCoins = coins-bet;
             coins = max(tempCoins,0);
-            cout << "LOSE 2" << endl;
+            cout << "LOSE" << endl;
         } else{
             //no identical shapes
             const int tempCoins = coins-2*bet;
             coins = max(tempCoins,0);
-            cout << "LOSE 0" << endl;
+            cout << "LOSE" << endl;
         }
         PrintSlots(slots);
         cout << "Net Worth: " << coins << endl;
