@@ -168,6 +168,8 @@ void startGame(const string& username, int& coins) {
         if (coins == 0) {
             cout << "You have run out of coins! Exiting the game.\n";
             exit = true; // Set exit to true to break the loop
+            coins = 50;
+            updateUserCoins(username, coins); // Update the user's coins
             continue; // Proceed to the next iteration (which exits)
         }
 
