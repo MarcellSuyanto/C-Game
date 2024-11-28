@@ -109,7 +109,7 @@ void Slots(int& coins){
     HOW TO PLAY
     1. Input how much money to bet
     2. Three slots
-    3. If three same, return coins + 3*bet
+    3. If three same, return coins + 10*bet
     4. If two same, return coins - bet
     5. If no same, return coins - 2*bet
     */ 
