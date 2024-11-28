@@ -132,7 +132,7 @@ void movePlayer(char direction, const string& username, int& coins, bool& exit) 
             exit = true; // Toggle off, exit from startGame()
             cout << "Exiting the game. Goodbye!\n";
             if (coins == 0){
-                coins = 50;
+                coins = 100;
             }
             updateUserCoins(username, coins); // Update the user's coins
             return;
@@ -168,7 +168,7 @@ void startGame(const string& username, int& coins) {
         if (coins == 0) {
             cout << "You have run out of coins! Exiting the game.\n";
             exit = true; // Set exit to true to break the loop
-            coins = 50;
+            coins = 100;
             updateUserCoins(username, coins); // Update the user's coins
             continue; // Proceed to the next iteration (which exits)
         }
