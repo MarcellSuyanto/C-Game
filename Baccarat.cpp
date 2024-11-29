@@ -216,7 +216,7 @@ void Baccarat(int& coins){
         }
         // Asking if they still want to play this game
         char again;
-        cout << "Would you like to play Higher or Lower again? (Y/N): ";
+        cout << "Would you like to play Baccarat again? (Y/N): ";
         cin >> again;
         while (again != 'Y' && again != 'N'){
             cout << "Y or N only!" << endl;
