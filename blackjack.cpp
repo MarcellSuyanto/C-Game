@@ -181,7 +181,7 @@ void Blackjack(int &coins){
 
         PrintCards(dealerDeck, playerDeck, hit);
 
-        while (hit_count < 4 and end == false){
+        while (end == false){
             cout << "Would like to add another card? (Y/N): ";
             cin >> choice;
             while (choice != 'Y' && choice != 'N'){
