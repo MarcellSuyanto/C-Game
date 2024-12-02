@@ -100,6 +100,7 @@ There is an EXIT on the left side if the player wishes to leave the casino
 
 ### Dynamic Memory Management
 - Dynamic memory used for slots; [slotmachine.cpp](slotmachine.cpp)
+- Dynamic memory in terms of the use of __vectors__; ALL
 
 ### File Input/Output
 - File storage to record player profiles (username and coins); [profile.cpp](profile.cpp)
