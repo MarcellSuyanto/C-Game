@@ -96,7 +96,7 @@ There is an EXIT on the left side if the player wishes to leave the casino
 
 ### Data Structures for Storing Data
 - Vectors to store deck of cards, cards in hand and slots; ALL
-- Struct to store individual cards; [playingcards.cpp](playingcards.cpp)
+- Struct to store individual cards; [playingcards.h](playingcards.h)
 
 ### Dynamic Memory Management
 - Dynamic memory used for slots; [slotmachine.cpp](slotmachine.cpp)
